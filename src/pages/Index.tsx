@@ -107,30 +107,95 @@ const Index = () => {
                 </div>
               </div>
 
-              {/* Right: Visual */}
+              {/* Right: Interactive Protocol Flow Visual */}
               <div className="relative">
                 <div className="relative w-full aspect-square max-w-md mx-auto">
-                  {/* Animated vault/network visual */}
+                  {/* Main container */}
                   <div className="absolute inset-0 rounded-3xl glass-card border-2 border-primary/20 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary-dark/10" />
                     
-                    {/* Center shield icon */}
+                    {/* Animated connecting lines */}
+                    <svg className="absolute inset-0 w-full h-full" style={{ filter: 'drop-shadow(0 0 8px rgba(0, 168, 89, 0.3))' }}>
+                      {/* Wallet to Shield line */}
+                      <line x1="15%" y1="30%" x2="50%" y2="50%" 
+                        stroke="url(#gradient1)" strokeWidth="2" strokeDasharray="4 4"
+                        className="animate-pulse-slow" />
+                      {/* Shield to Clock line */}
+                      <line x1="50%" y1="50%" x2="50%" y2="75%" 
+                        stroke="url(#gradient2)" strokeWidth="2" strokeDasharray="4 4"
+                        className="animate-pulse-slow [animation-delay:1s]" />
+                      {/* Shield to Beneficiaries line */}
+                      <line x1="50%" y1="50%" x2="85%" y2="25%" 
+                        stroke="url(#gradient3)" strokeWidth="2" strokeDasharray="4 4"
+                        className="animate-pulse-slow [animation-delay:2s]" />
+                      
+                      <defs>
+                        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="rgba(0, 168, 89, 0)" />
+                          <stop offset="50%" stopColor="rgba(0, 168, 89, 0.6)" />
+                          <stop offset="100%" stopColor="rgba(0, 168, 89, 0)" />
+                        </linearGradient>
+                        <linearGradient id="gradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" stopColor="rgba(0, 168, 89, 0)" />
+                          <stop offset="50%" stopColor="rgba(0, 168, 89, 0.6)" />
+                          <stop offset="100%" stopColor="rgba(0, 168, 89, 0)" />
+                        </linearGradient>
+                        <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="rgba(0, 168, 89, 0)" />
+                          <stop offset="50%" stopColor="rgba(0, 168, 89, 0.6)" />
+                          <stop offset="100%" stopColor="rgba(0, 168, 89, 0)" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    
+                    {/* Center: Protected Shield with pulse */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="relative">
-                        <Shield className="h-32 w-32 text-primary animate-glow" />
-                        <div className="absolute inset-0 bg-primary/20 blur-3xl" />
+                      <div className="relative group">
+                        <div className="absolute inset-0 bg-primary/20 blur-3xl animate-pulse-slow" />
+                        <Shield className="h-32 w-32 text-primary relative z-10 drop-shadow-lg" />
+                        <div className="absolute inset-0 border-2 border-primary/30 rounded-full animate-ping" style={{ animationDuration: '3s' }} />
                       </div>
                     </div>
                     
-                    {/* Orbiting elements */}
-                    <div className="absolute top-10 right-10 h-16 w-16 rounded-2xl glass-card flex items-center justify-center animate-float">
-                      <Users className="h-8 w-8 text-primary" />
+                    {/* Step 1: Wallet (top-left) */}
+                    <div className="absolute top-[25%] left-[10%] h-20 w-20 rounded-2xl glass-card border border-primary/30 flex flex-col items-center justify-center animate-float group hover:scale-110 transition-transform cursor-pointer">
+                      <Globe className="h-10 w-10 text-primary mb-1" />
+                      <span className="text-[10px] text-primary font-semibold">Your Wallet</span>
                     </div>
-                    <div className="absolute bottom-10 left-10 h-16 w-16 rounded-2xl glass-card flex items-center justify-center animate-float [animation-delay:2s]">
-                      <Lock className="h-8 w-8 text-primary" />
+                    
+                    {/* Step 2: Monitoring/Clock (bottom-center) */}
+                    <div className="absolute bottom-[15%] left-[40%] h-20 w-20 rounded-2xl glass-card border border-primary/30 flex flex-col items-center justify-center animate-float [animation-delay:1s] group hover:scale-110 transition-transform cursor-pointer">
+                      <Clock className="h-10 w-10 text-primary mb-1 animate-spin-slow" />
+                      <span className="text-[10px] text-primary font-semibold">Monitor</span>
                     </div>
-                    <div className="absolute top-1/2 left-10 h-16 w-16 rounded-2xl glass-card flex items-center justify-center animate-float [animation-delay:4s]">
-                      <Zap className="h-8 w-8 text-primary" />
+                    
+                    {/* Step 3: Beneficiaries (top-right) */}
+                    <div className="absolute top-[20%] right-[10%] h-20 w-20 rounded-2xl glass-card border border-primary/30 flex flex-col items-center justify-center animate-float [animation-delay:2s] group hover:scale-110 transition-transform cursor-pointer">
+                      <Users className="h-10 w-10 text-primary mb-1" />
+                      <span className="text-[10px] text-primary font-semibold">Transfer</span>
+                    </div>
+                    
+                    {/* Animated particles flowing */}
+                    <div className="absolute top-[28%] left-[25%] w-2 h-2 bg-primary rounded-full animate-ping [animation-duration:2s]" />
+                    <div className="absolute bottom-[35%] left-[48%] w-2 h-2 bg-primary rounded-full animate-ping [animation-duration:2s] [animation-delay:1s]" />
+                    <div className="absolute top-[35%] right-[35%] w-2 h-2 bg-primary rounded-full animate-ping [animation-duration:2s] [animation-delay:1.5s]" />
+                  </div>
+                  
+                  {/* Step labels below */}
+                  <div className="absolute -bottom-16 left-0 right-0 flex justify-center gap-4 text-xs text-muted-foreground">
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                      <span>Protect</span>
+                    </div>
+                    <ChevronRight className="h-4 w-4" />
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 rounded-full bg-primary animate-pulse [animation-delay:0.5s]" />
+                      <span>Monitor</span>
+                    </div>
+                    <ChevronRight className="h-4 w-4" />
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 rounded-full bg-primary animate-pulse [animation-delay:1s]" />
+                      <span>Transfer</span>
                     </div>
                   </div>
                 </div>
