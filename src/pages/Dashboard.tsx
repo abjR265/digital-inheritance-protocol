@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const Dashboard = () => {
   const [protectionScore] = useState(66);
@@ -50,6 +51,7 @@ const Dashboard = () => {
               <Activity className="h-3 w-3 mr-1 animate-pulse" />
               Online
             </Badge>
+            <ThemeToggle />
             <Button variant="ghost" size="sm" className="font-mono hover-glow">
               0x742d...4a9B
             </Button>
