@@ -7,10 +7,36 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { TestTransferModal } from "@/components/TestTransferModal";
+import { toast } from "sonner";
 
 const Dashboard = () => {
-  const [protectionScore] = useState(66);
+  const [protectionScore, setProtectionScore] = useState(66);
   const [isTestModalOpen, setIsTestModalOpen] = useState(false);
+
+  const handleCompleteSetup = () => {
+    toast.success("Setup completion guide opened!");
+    setProtectionScore(100);
+  };
+
+  const handleConfirmAlive = () => {
+    toast.success("Activity confirmed! Next check-in scheduled for 90 days from now.");
+  };
+
+  const handleAddWallet = () => {
+    toast.info("Add wallet modal would open here");
+  };
+
+  const handleAddRule = () => {
+    toast.info("Create rule modal would open here");
+  };
+
+  const handleAddBeneficiary = () => {
+    toast.info("Add beneficiary form would open here");
+  };
+
+  const handleNavigation = (label: string) => {
+    toast.info(`Navigating to ${label}...`);
+  };
 
   const wallets = [
     { id: 1, address: "0x742d...4a9B", chain: "Ethereum", testnet: true, connected: true, balance: "2.45 ETH" },
@@ -52,6 +78,7 @@ const Dashboard = () => {
           ].map((item, i) => (
             <button
               key={i}
+              onClick={() => handleNavigation(item.label)}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                 item.active
                   ? "bg-primary/10 text-primary border border-primary/20"
@@ -112,7 +139,7 @@ const Dashboard = () => {
                   Complete the remaining steps to reach 100% protection
                 </p>
               </div>
-              <Button variant="hero" size="lg">
+              <Button variant="hero" size="lg" onClick={handleCompleteSetup}>
                 <CheckCircle2 className="mr-2 h-5 w-5" />
                 Complete Setup
               </Button>
@@ -152,7 +179,7 @@ const Dashboard = () => {
                   </p>
                 </div>
               </div>
-              <Button variant="outline" className="hover-glow">
+              <Button variant="outline" className="hover-glow" onClick={handleConfirmAlive}>
                 <CheckCircle2 className="mr-2 h-4 w-4" />
                 Confirm I'm Alive
               </Button>
@@ -169,7 +196,7 @@ const Dashboard = () => {
                   </div>
                   <h3 className="text-xl font-semibold">Connected Wallets</h3>
                 </div>
-                <Button size="sm" variant="outline" className="hover-glow">
+                <Button size="sm" variant="outline" className="hover-glow" onClick={handleAddWallet}>
                   <Plus className="h-4 w-4 mr-1" />
                   Add
                 </Button>
@@ -210,7 +237,7 @@ const Dashboard = () => {
                   </div>
                   <h3 className="text-xl font-semibold">Transfer Rules</h3>
                 </div>
-                <Button size="sm" variant="outline" className="hover-glow">
+                <Button size="sm" variant="outline" className="hover-glow" onClick={handleAddRule}>
                   <Plus className="h-4 w-4 mr-1" />
                   Add
                 </Button>
@@ -249,7 +276,7 @@ const Dashboard = () => {
                   </div>
                   <h3 className="text-xl font-semibold">Beneficiaries</h3>
                 </div>
-                <Button size="sm" variant="outline" className="hover-glow">
+                <Button size="sm" variant="outline" className="hover-glow" onClick={handleAddBeneficiary}>
                   <Plus className="h-4 w-4 mr-1" />
                   Add Beneficiary
                 </Button>
