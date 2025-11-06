@@ -64,7 +64,7 @@ const Index = () => {
             </h1>
 
             <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl">
-              Automatically transfer your crypto assets to loved ones — safely, legally, and on-chain.
+              Automatically transfer your crypto assets to loved ones - safely, legally, and on-chain.
               <span className="text-foreground font-semibold block mt-2">
                 You stay in control even when you can't be there.
               </span>
