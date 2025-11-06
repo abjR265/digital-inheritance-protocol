@@ -6,9 +6,11 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { TestTransferModal } from "@/components/TestTransferModal";
 
 const Dashboard = () => {
   const [protectionScore] = useState(66);
+  const [isTestModalOpen, setIsTestModalOpen] = useState(false);
 
   const wallets = [
     { id: 1, address: "0x742d...4a9B", chain: "Ethereum", testnet: true, connected: true, balance: "2.45 ETH" },
@@ -301,7 +303,7 @@ const Dashboard = () => {
                   <span className="text-foreground font-semibold"> No real assets will be transferred.</span>
                 </p>
               </div>
-              <Button variant="hero" size="lg" className="group text-lg px-10 py-6 h-auto">
+              <Button variant="hero" size="lg" className="group text-lg px-10 py-6 h-auto" onClick={() => setIsTestModalOpen(true)}>
                 <PlayCircle className="mr-3 h-6 w-6 group-hover:scale-105 transition-transform duration-300" />
                 Run Test Transfer
               </Button>
@@ -309,6 +311,9 @@ const Dashboard = () => {
           </div>
         </Card>
       </div>
+
+      {/* Test Transfer Modal */}
+      <TestTransferModal open={isTestModalOpen} onOpenChange={setIsTestModalOpen} />
     </div>
   );
 };
