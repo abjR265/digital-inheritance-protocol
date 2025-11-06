@@ -1,4 +1,4 @@
-# Digital Inheritance Protocol 
+# Matteo - Digital Inheritance Protocol 🛡️
 
 Secure, compliant, and automatic transfer of your digital legacy.
 
@@ -7,11 +7,11 @@ Secure, compliant, and automatic transfer of your digital legacy.
 Matteo is a premium web3 platform that automates the transfer of crypto assets to beneficiaries after verified trigger events (prolonged inactivity or legal verification). Built with institutional-grade design inspired by Cryptio, this platform ensures your digital assets are transferred safely and automatically to your loved ones when the time comes.
 
 **Key Value Propositions:**
-- **Secure & On-Chain**: All rules and transfers are secured by smart contracts on Polygon
-- **Automated**: No manual intervention needed - smart contracts execute automatically
-- **Family-First**: Simple beneficiary management with KYC verification
-- **Test-Ready**: Full testnet environment for safe experimentation
-- **Institutional Grade**: Enterprise-level security and compliance
+- 🔒 **Secure & On-Chain**: All rules and transfers are secured by smart contracts on Polygon
+- ⚡ **Automated**: No manual intervention needed - smart contracts execute automatically
+- 👨‍👩‍👧‍👦 **Family-First**: Simple beneficiary management with KYC verification
+- 🧪 **Test-Ready**: Full testnet environment for safe experimentation
+- 🏛️ **Institutional Grade**: Enterprise-level security and compliance
 
 ## Design System
 
@@ -30,10 +30,10 @@ Matteo is a premium web3 platform that automates the transfer of crypto assets t
 
 ## Current Features (MVP Phase 1)
 
-**Landing Page** - Cryptio-style hero with animated vault visual
-**Dashboard** - Sidebar navigation, protection score, wallet/rule/beneficiary cards
-**Test Transfer Modal** - Animated simulation with transaction details
-**Dark Mode** - Default dark theme with forest green accents
+✅ **Landing Page** - Cryptio-style hero with animated vault visual
+✅ **Dashboard** - Sidebar navigation, protection score, wallet/rule/beneficiary cards
+✅ **Test Transfer Modal** - Animated simulation with transaction details
+✅ **Dark Mode** - Default dark theme with forest green accents
 
 ## Tech Stack
 
@@ -169,4 +169,4 @@ MIT
 
 ---
 
-Built with love for the future of digital inheritance
+Built with ❤️ for the future of digital inheritance
