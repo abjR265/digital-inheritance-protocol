@@ -154,7 +154,7 @@ const Dashboard = () => {
               { label: "Beneficiaries", value: "1", icon: Users, change: "Verified" },
               { label: "Next Check", value: "90d", icon: Clock, change: "Scheduled" },
             ].map((stat, i) => (
-              <Card key={i} className="p-5 glass-card hover-lift cursor-pointer">
+              <Card key={i} className="p-5 crypto-card hover-lift cursor-pointer">
                 <div className="flex items-center justify-between mb-3">
                   <stat.icon className="h-5 w-5 text-primary" />
                   <Badge variant="outline" className="text-xs">{stat.change}</Badge>
@@ -188,7 +188,7 @@ const Dashboard = () => {
 
           <div className="grid lg:grid-cols-2 gap-6">
             {/* Wallets */}
-            <Card className="p-6 glass-card">
+            <Card className="p-6 crypto-card">
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
                   <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
@@ -229,7 +229,7 @@ const Dashboard = () => {
             </Card>
 
             {/* Rules */}
-            <Card className="p-6 glass-card">
+            <Card className="p-6 crypto-card">
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
                   <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
@@ -268,7 +268,7 @@ const Dashboard = () => {
             </Card>
 
             {/* Beneficiaries */}
-            <Card className="p-6 lg:col-span-2 glass-card">
+            <Card className="p-6 lg:col-span-2 crypto-card">
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
                   <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
