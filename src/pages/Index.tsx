@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import StorytellingAnimation from "@/components/StorytellingAnimation";
 
 const Index = () => {
@@ -38,7 +37,6 @@ const Index = () => {
             <a href="#security" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Security
             </a>
-            <ThemeToggle />
             <Link to="/dashboard">
               <Button variant="outline" size="sm" className="hover-glow">
                 Launch App
