@@ -76,7 +76,7 @@ export const TestTransferModal = ({ open, onOpenChange }: TestTransferModalProps
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-2xl glass-card">
+      <DialogContent className="sm:max-w-2xl bg-background border-primary/20">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3 text-2xl">
             <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
@@ -88,7 +88,7 @@ export const TestTransferModal = ({ open, onOpenChange }: TestTransferModalProps
 
         <div className="space-y-6 py-4">
           {/* Current Stage */}
-          <Card className="p-6 bg-secondary/50">
+          <Card className="p-6 bg-background/50 border-primary/20">
             <div className="flex items-center gap-3 mb-3">
               <StageIcon className={`h-6 w-6 text-primary ${stage !== "complete" ? "animate-pulse-slow" : ""}`} />
               <h3 className="font-semibold text-lg">{currentStage.title}</h3>
@@ -103,22 +103,22 @@ export const TestTransferModal = ({ open, onOpenChange }: TestTransferModalProps
               <h4 className="font-semibold text-sm text-muted-foreground">Transfer Details</h4>
               
               <div className="space-y-3">
-                <div className="flex justify-between items-center p-3 rounded-lg bg-card border border-border">
+                <div className="flex justify-between items-center p-3 rounded-lg bg-background/50 border border-primary/10">
                   <span className="text-sm text-muted-foreground">Network</span>
                   <Badge variant="outline">Polygon Testnet</Badge>
                 </div>
 
-                <div className="flex justify-between items-center p-3 rounded-lg bg-card border border-border">
+                <div className="flex justify-between items-center p-3 rounded-lg bg-background/50 border border-primary/10">
                   <span className="text-sm text-muted-foreground">Trigger Type</span>
                   <Badge>Inactivity (6 months)</Badge>
                 </div>
 
-                <div className="flex justify-between items-center p-3 rounded-lg bg-card border border-border">
+                <div className="flex justify-between items-center p-3 rounded-lg bg-background/50 border border-primary/10">
                   <span className="text-sm text-muted-foreground">Beneficiaries</span>
                   <span className="font-semibold">1</span>
                 </div>
 
-                <div className="flex justify-between items-center p-3 rounded-lg bg-card border border-border">
+                <div className="flex justify-between items-center p-3 rounded-lg bg-background/50 border border-primary/10">
                   <span className="text-sm text-muted-foreground">Assets Transferred</span>
                   <span className="font-semibold">2.45 ETH</span>
                 </div>
