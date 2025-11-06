@@ -76,11 +76,11 @@ export const TestTransferModal = ({ open, onOpenChange }: TestTransferModalProps
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-2xl !bg-[#0A0A0A] border-primary/20 text-foreground">
+      <DialogContent className="sm:max-w-2xl !bg-[#0A0A0A] border-primary/20">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-3 text-2xl text-foreground">
+          <DialogTitle className="flex items-center gap-3 text-2xl !text-white">
             <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <StageIcon className="h-5 w-5 text-primary-foreground" />
+              <StageIcon className="h-5 w-5 text-white" />
             </div>
             Test Mode Simulation
           </DialogTitle>
@@ -91,36 +91,36 @@ export const TestTransferModal = ({ open, onOpenChange }: TestTransferModalProps
           <Card className="p-6 !bg-[#0D0D0D] border-primary/20">
             <div className="flex items-center gap-3 mb-3">
               <StageIcon className={`h-6 w-6 text-primary ${stage !== "complete" ? "animate-pulse-slow" : ""}`} />
-              <h3 className="font-semibold text-lg text-foreground">{currentStage.title}</h3>
+              <h3 className="font-semibold text-lg !text-white">{currentStage.title}</h3>
             </div>
-            <p className="text-muted-foreground mb-4">{currentStage.description}</p>
+            <p className="!text-gray-400 mb-4">{currentStage.description}</p>
             <Progress value={progress} className="h-3" />
           </Card>
 
           {/* Transfer Details (shown when transferring or complete) */}
           {(stage === "transferring" || stage === "complete") && (
             <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <h4 className="font-semibold text-sm text-muted-foreground">Transfer Details</h4>
+              <h4 className="font-semibold text-sm !text-gray-400">Transfer Details</h4>
               
               <div className="space-y-3">
                 <div className="flex justify-between items-center p-3 rounded-lg !bg-[#0D0D0D] border border-primary/10">
-                  <span className="text-sm text-muted-foreground">Network</span>
-                  <Badge variant="outline" className="border-primary/30 text-foreground">Polygon Testnet</Badge>
+                  <span className="text-sm !text-gray-400">Network</span>
+                  <Badge variant="outline" className="border-primary/30 !text-white">Polygon Testnet</Badge>
                 </div>
 
                 <div className="flex justify-between items-center p-3 rounded-lg !bg-[#0D0D0D] border border-primary/10">
-                  <span className="text-sm text-muted-foreground">Trigger Type</span>
+                  <span className="text-sm !text-gray-400">Trigger Type</span>
                   <Badge className="bg-success/20 border-success/30 text-success hover:bg-success/30">Inactivity (6 months)</Badge>
                 </div>
 
                 <div className="flex justify-between items-center p-3 rounded-lg !bg-[#0D0D0D] border border-primary/10">
-                  <span className="text-sm text-muted-foreground">Beneficiaries</span>
-                  <span className="font-semibold text-foreground">1</span>
+                  <span className="text-sm !text-gray-400">Beneficiaries</span>
+                  <span className="font-semibold !text-white">1</span>
                 </div>
 
                 <div className="flex justify-between items-center p-3 rounded-lg !bg-[#0D0D0D] border border-primary/10">
-                  <span className="text-sm text-muted-foreground">Assets Transferred</span>
-                  <span className="font-semibold text-foreground">2.45 ETH</span>
+                  <span className="text-sm !text-gray-400">Assets Transferred</span>
+                  <span className="font-semibold !text-white">2.45 ETH</span>
                 </div>
               </div>
             </div>
@@ -133,16 +133,16 @@ export const TestTransferModal = ({ open, onOpenChange }: TestTransferModalProps
                 <CheckCircle2 className="h-5 w-5 text-success flex-shrink-0 mt-0.5" />
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-semibold text-success mb-1">Transaction Confirmed</p>
-                  <p className="text-xs text-muted-foreground mb-2">Your test transfer has been successfully executed on testnet</p>
+                  <p className="text-xs !text-gray-400 mb-2">Your test transfer has been successfully executed on testnet</p>
                   <div className="flex items-center gap-2 text-xs">
-                    <span className="text-muted-foreground">Tx Hash:</span>
-                    <code className="font-mono text-xs !bg-[#000000] border border-primary/10 px-2 py-1 rounded truncate flex-1 text-foreground">
+                    <span className="!text-gray-400">Tx Hash:</span>
+                    <code className="font-mono text-xs !bg-[#000000] border border-primary/10 px-2 py-1 rounded truncate flex-1 !text-white">
                       {txHash.slice(0, 20)}...{txHash.slice(-8)}
                     </code>
                     <Button
                       size="sm"
                       variant="ghost"
-                      className="h-6 w-6 p-0 hover:bg-primary/10"
+                      className="h-6 w-6 p-0 hover:bg-primary/10 !text-gray-400"
                       onClick={() => window.open(`https://mumbai.polygonscan.com/tx/${txHash}`, '_blank')}
                     >
                       <ExternalLink className="h-3 w-3" />
@@ -173,7 +173,7 @@ export const TestTransferModal = ({ open, onOpenChange }: TestTransferModalProps
           </div>
 
           {/* Test Mode Notice */}
-          <div className="text-center text-xs text-muted-foreground pt-2 border-t border-border">
+          <div className="text-center text-xs !text-gray-400 pt-2 border-t border-border">
             <p>🔒 This is a simulated test transfer on Polygon Mumbai testnet</p>
             <p>No real assets are being transferred</p>
           </div>
