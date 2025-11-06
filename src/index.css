@@ -241,4 +241,18 @@
   .status-dot.inactive {
     @apply bg-muted-foreground;
   }
+  
+  /* Flow animation for protocol visualization */
+  @keyframes flow-dash {
+    0% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: 24;
+    }
+  }
+
+  .animate-flow-dash {
+    animation: flow-dash 1.5s linear infinite;
+  }
 }
