@@ -152,7 +152,7 @@ const Index = () => {
       <section id="trust" className="relative py-20">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto">
-            <Card className="p-12 glass-card border border-primary/20 hover:border-primary/30 transition-all duration-500">
+            <Card className="p-12 crypto-card border border-primary/20 hover:border-primary/30 transition-all duration-500">
               <div className="flex items-center gap-3 mb-6">
                 <Lock className="h-10 w-10 text-primary" />
                 <h3 className="text-3xl font-bold">Trust Layer</h3>

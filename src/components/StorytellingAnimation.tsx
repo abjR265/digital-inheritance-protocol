@@ -72,7 +72,7 @@ const StorytellingAnimation = () => {
       </div>
 
       {/* Main Animation Area */}
-      <div className="relative h-[400px] rounded-3xl glass-card border border-primary/20 overflow-hidden">
+      <div className="relative h-[400px] rounded-3xl bg-card/50 backdrop-blur-sm border border-primary/20 overflow-hidden">
         {/* Background mesh */}
         <div className="absolute inset-0 grid-pattern opacity-20" />
         <div className="absolute inset-0 mesh-gradient opacity-10" />
