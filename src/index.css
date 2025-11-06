@@ -6,52 +6,69 @@
 
 @layer base {
   :root {
-    /* Light mode (minimal use) */
-    --background: 240 10% 96%;
-    --foreground: 240 10% 10%;
+    /* Light Mode - White + Dark Green */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 10%;
-    --card-glass: 240 10% 98%;
+    --card-foreground: 0 0% 10%;
+    --card-glass: 0 0% 98%;
+    --card-surface: 0 0% 96%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 10%;
+    --popover-foreground: 0 0% 10%;
 
-    --primary: 151 100% 33%;
+    /* Dark Forest Green Primary */
+    --primary: 151 100% 28%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 151 100% 43%;
-    --primary-dark: 151 100% 15%;
+    --primary-glow: 151 100% 35%;
+    --primary-dark: 151 100% 20%;
 
-    --secondary: 240 10% 90%;
-    --secondary-foreground: 240 10% 10%;
+    /* Light gray surfaces */
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
 
-    --muted: 240 10% 92%;
-    --muted-foreground: 240 5% 45%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 80 40% 55%;
+    /* Alert yellow-green */
+    --accent: 80 40% 45%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 10% 85%;
-    --input: 240 10% 88%;
-    --ring: 151 100% 33%;
+    --border: 0 0% 90%;
+    --input: 0 0% 95%;
+    --ring: 151 100% 28%;
 
     --radius: 0.75rem;
 
-    --success: 151 100% 33%;
-    --warning: 80 70% 55%;
-    --info: 200 80% 50%;
+    /* Semantic colors */
+    --success: 151 100% 28%;
+    --warning: 80 70% 50%;
+    --info: 200 80% 45%;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 151 100% 33%;
+    /* Gradients */
+    --gradient-primary: linear-gradient(180deg, hsl(151 100% 28%), hsl(151 100% 20%));
+    --gradient-hero: linear-gradient(135deg, hsl(151 100% 28%) 0%, hsl(151 100% 20%) 100%);
+    --gradient-mesh: 
+      radial-gradient(at 20% 30%, hsl(151 100% 28% / 0.06) 0px, transparent 50%),
+      radial-gradient(at 80% 20%, hsl(151 100% 28% / 0.04) 0px, transparent 50%),
+      radial-gradient(at 50% 80%, hsl(151 100% 20% / 0.03) 0px, transparent 50%);
+    
+    /* Shadows with green glow */
+    --shadow-glow: 0 0 20px hsl(151 100% 28% / 0.15);
+    --shadow-glow-lg: 0 0 40px hsl(151 100% 28% / 0.2);
+
+    --sidebar-background: 0 0% 99%;
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 151 100% 28%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 151 100% 28%;
   }
 
   .dark {
@@ -130,9 +147,16 @@
   
   /* Cryptio-style glass cards */
   .glass-card {
-    background: linear-gradient(135deg, hsla(0 0% 100% / 0.03), hsla(0 0% 100% / 0.01));
     backdrop-filter: blur(12px) saturate(120%);
     border: 1px solid hsl(var(--border));
+  }
+  
+  .dark .glass-card {
+    background: linear-gradient(135deg, hsla(0 0% 100% / 0.03), hsla(0 0% 100% / 0.01));
+  }
+  
+  :root .glass-card {
+    background: linear-gradient(135deg, hsla(0 0% 100% / 0.8), hsla(0 0% 100% / 0.6));
   }
   
   /* Web mesh background */
