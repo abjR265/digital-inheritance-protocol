@@ -7,7 +7,7 @@ const StorytellingAnimation = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveScene((prev) => (prev + 1) % 4);
-    }, 4000);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
