@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import StorytellingAnimation from "@/components/StorytellingAnimation";
 
 const Index = () => {
   return (
@@ -56,97 +57,11 @@ const Index = () => {
               <span className="font-medium">Secure Digital Inheritance Protocol</span>
             </Badge>
 
-            <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 mb-6">
-              <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-                <span className="text-foreground">Secure</span>
-                <br />
-                <span className="text-primary">Digital Inheritance</span>
-              </h1>
-
-              {/* Compact Flow Animation beside title */}
-              <div className="relative w-full max-w-sm lg:w-64 h-40 lg:flex-shrink-0">
-                <div className="absolute inset-0 rounded-2xl glass-card border border-primary/30 overflow-hidden p-4">
-                  <svg className="w-full h-full" viewBox="0 0 280 120">
-                    {/* Animated flow line */}
-                    <defs>
-                      <linearGradient id="flowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="rgba(0, 168, 89, 0.2)" />
-                        <stop offset="50%" stopColor="rgba(0, 168, 89, 0.8)" />
-                        <stop offset="100%" stopColor="rgba(0, 168, 89, 0.2)" />
-                      </linearGradient>
-                      <linearGradient id="arrowGradient">
-                        <stop offset="0%" stopColor="rgba(0, 168, 89, 0.4)" />
-                        <stop offset="100%" stopColor="rgba(0, 168, 89, 1)" />
-                      </linearGradient>
-                    </defs>
-
-                    {/* Main flow path */}
-                    <path
-                      d="M 30 60 L 90 60 L 90 35 L 140 35 L 140 60 L 190 60 L 190 85 L 250 85"
-                      stroke="url(#flowGradient)"
-                      strokeWidth="3"
-                      fill="none"
-                      strokeDasharray="8 4"
-                      className="animate-flow-dash"
-                    />
-
-                    {/* Animated particles */}
-                    <circle r="3" fill="hsl(var(--primary))" className="animate-flow-particle-1">
-                      <animateMotion dur="4s" repeatCount="indefinite">
-                        <mpath href="#flowPath" />
-                      </animateMotion>
-                    </circle>
-                    <circle r="2.5" fill="hsl(var(--primary))" opacity="0.7" className="animate-flow-particle-2">
-                      <animateMotion dur="4s" begin="1.3s" repeatCount="indefinite">
-                        <mpath href="#flowPath" />
-                      </animateMotion>
-                    </circle>
-                    <circle r="2" fill="hsl(var(--primary))" opacity="0.5" className="animate-flow-particle-3">
-                      <animateMotion dur="4s" begin="2.6s" repeatCount="indefinite">
-                        <mpath href="#flowPath" />
-                      </animateMotion>
-                    </circle>
-
-                    <path id="flowPath" d="M 30 60 L 90 60 L 90 35 L 140 35 L 140 60 L 190 60 L 190 85 L 250 85" fill="none" />
-
-                    {/* Step 1: Lock Assets */}
-                    <g transform="translate(15, 45)">
-                      <circle cx="15" cy="15" r="14" fill="hsl(var(--primary) / 0.15)" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-                      <rect x="9" y="11" width="12" height="10" rx="1" fill="none" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-                      <circle cx="15" cy="8" r="3" fill="none" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-                      <text x="15" y="38" fontSize="9" fill="hsl(var(--primary))" textAnchor="middle" fontWeight="600">Lock</text>
-                    </g>
-
-                    {/* Step 2: Monitor */}
-                    <g transform="translate(125, 20)">
-                      <circle cx="15" cy="15" r="14" fill="hsl(var(--primary) / 0.15)" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-                      <circle cx="15" cy="15" r="9" fill="none" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-                      <line x1="15" y1="15" x2="15" y2="9" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-                      <line x1="15" y1="15" x2="19" y2="15" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-                      <text x="15" y="38" fontSize="9" fill="hsl(var(--primary))" textAnchor="middle" fontWeight="600">Monitor</text>
-                      <circle cx="15" cy="15" r="12" fill="none" stroke="hsl(var(--primary))" strokeWidth="0.5" opacity="0.5" className="animate-ping" style={{ animationDuration: '2s' }} />
-                    </g>
-
-                    {/* Step 3: Transfer */}
-                    <g transform="translate(235, 70)">
-                      <circle cx="15" cy="15" r="14" fill="hsl(var(--primary) / 0.15)" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-                      <circle cx="11" cy="12" r="4" fill="none" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-                      <circle cx="19" cy="12" r="4" fill="none" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-                      <path d="M 8 20 Q 15 24 22 20" fill="none" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-                      <text x="15" y="38" fontSize="9" fill="hsl(var(--primary))" textAnchor="middle" fontWeight="600">Transfer</text>
-                    </g>
-
-                    {/* Arrow indicators */}
-                    <g opacity="0.6">
-                      <path d="M 85 60 L 90 60 L 87 57" fill="url(#arrowGradient)" className="animate-pulse" />
-                      <path d="M 135 40 L 140 35 L 140 40" fill="url(#arrowGradient)" className="animate-pulse" style={{ animationDelay: '0.5s' }} />
-                      <path d="M 185 62 L 190 60 L 187 65" fill="url(#arrowGradient)" className="animate-pulse" style={{ animationDelay: '1s' }} />
-                      <path d="M 185 83 L 190 85 L 187 80" fill="url(#arrowGradient)" className="animate-pulse" style={{ animationDelay: '1.5s' }} />
-                    </g>
-                  </svg>
-                </div>
-              </div>
-            </div>
+            <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
+              <span className="text-foreground">Secure</span>
+              <br />
+              <span className="text-primary">Digital Inheritance</span>
+            </h1>
 
             <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl">
               Automatically transfer your crypto assets to loved ones — safely, legally, and on-chain.
@@ -170,7 +85,7 @@ const Index = () => {
             </div>
 
             {/* Trust indicators */}
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 mb-8">
               {[
                 { text: "On-chain security", icon: Shield },
                 { text: "Legal compliance", icon: Check },
@@ -182,6 +97,9 @@ const Index = () => {
                 </div>
               ))}
             </div>
+
+            {/* Storytelling Animation */}
+            <StorytellingAnimation />
           </div>
         </div>
       </section>
