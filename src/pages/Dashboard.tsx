@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Shield, Wallet, Users, Clock, Plus, PlayCircle, CheckCircle2, TrendingUp, Activity, Settings, Home } from "lucide-react";
+import { Shield, Wallet, Users, Clock, Plus, PlayCircle, CheckCircle2, TrendingUp, Activity, Settings, Home, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -7,11 +7,13 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { TestTransferModal } from "@/components/TestTransferModal";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { toast } from "sonner";
 
 const Dashboard = () => {
   const [protectionScore, setProtectionScore] = useState(66);
   const [isTestModalOpen, setIsTestModalOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleCompleteSetup = () => {
     toast.success("Setup completion guide opened!");
@@ -52,6 +54,52 @@ const Dashboard = () => {
 
   const nextCheckIn = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000);
 
+  const navItems = [
+    { icon: Home, label: "Dashboard", active: true },
+    { icon: Users, label: "Beneficiaries" },
+    { icon: Clock, label: "Rules" },
+    { icon: Activity, label: "Check-Ins" },
+    { icon: Settings, label: "Settings" },
+  ];
+
+  const SidebarContent = () => (
+    <>
+      <div className="p-6 border-b border-border/50">
+        <Link to="/" className="flex items-center gap-2 group">
+          <Shield className="h-8 w-8 text-primary" />
+          <span className="text-xl font-bold">DIP</span>
+        </Link>
+      </div>
+
+      <nav className="flex-1 p-4 space-y-2">
+        {navItems.map((item, i) => (
+          <button
+            key={i}
+            onClick={() => {
+              handleNavigation(item.label);
+              setIsSidebarOpen(false);
+            }}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+              item.active
+                ? "bg-primary/10 text-primary border border-primary/20"
+                : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+            }`}
+          >
+            <item.icon className="h-5 w-5" />
+            <span className="font-medium">{item.label}</span>
+          </button>
+        ))}
+      </nav>
+
+      <div className="p-4 border-t border-border/50">
+        <div className="flex items-center justify-between">
+          <span className="text-sm text-muted-foreground">Theme</span>
+          <ThemeToggle />
+        </div>
+      </div>
+    </>
+  );
+
   return (
     <div className="min-h-screen flex bg-background">
       {/* Institutional background */}
@@ -59,61 +107,43 @@ const Dashboard = () => {
       <div className="fixed inset-0 mesh-gradient opacity-40 pointer-events-none" />
       <div className="fixed inset-0 bg-gradient-to-b from-background via-background/95 to-background pointer-events-none" />
 
-      {/* Sidebar */}
+      {/* Desktop Sidebar */}
       <aside className="w-64 border-r border-border/50 backdrop-blur-xl bg-background/80 flex-shrink-0 sticky top-0 h-screen z-40 hidden lg:flex flex-col">
-        <div className="p-6 border-b border-border/50">
-          <Link to="/" className="flex items-center gap-2 group">
-            <Shield className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold">DIP</span>
-          </Link>
-        </div>
-
-        <nav className="flex-1 p-4 space-y-2">
-          {[
-            { icon: Home, label: "Dashboard", active: true },
-            { icon: Users, label: "Beneficiaries" },
-            { icon: Clock, label: "Rules" },
-            { icon: Activity, label: "Check-Ins" },
-            { icon: Settings, label: "Settings" },
-          ].map((item, i) => (
-            <button
-              key={i}
-              onClick={() => handleNavigation(item.label)}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-                item.active
-                  ? "bg-primary/10 text-primary border border-primary/20"
-                  : "text-muted-foreground hover:text-foreground hover:bg-secondary"
-              }`}
-            >
-              <item.icon className="h-5 w-5" />
-              <span className="font-medium">{item.label}</span>
-            </button>
-          ))}
-        </nav>
-
-        <div className="p-4 border-t border-border/50">
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-muted-foreground">Theme</span>
-            <ThemeToggle />
-          </div>
-        </div>
+        <SidebarContent />
       </aside>
+
+      {/* Mobile Sidebar */}
+      <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
+        <SheetContent side="left" className="w-64 p-0 border-r border-border/50">
+          <SidebarContent />
+        </SheetContent>
+      </Sheet>
 
       {/* Main Content */}
       <div className="flex-1 overflow-auto relative z-10">
         {/* Header */}
         <header className="border-b border-border/50 backdrop-blur-xl bg-background/80 sticky top-0 z-30">
-          <div className="px-6 py-4 flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-foreground">Dashboard</h1>
-              <p className="text-sm text-muted-foreground">Manage your digital inheritance plan</p>
-            </div>
+          <div className="px-4 lg:px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Badge className="px-3 py-1 bg-success/10 border-success/30 text-success">
-                <div className="status-dot active mr-2" />
+              <Button
+                variant="ghost"
+                size="icon"
+                className="lg:hidden"
+                onClick={() => setIsSidebarOpen(true)}
+              >
+                <Menu className="h-5 w-5" />
+              </Button>
+              <div>
+                <h1 className="text-xl lg:text-2xl font-bold text-foreground">Dashboard</h1>
+                <p className="text-xs lg:text-sm text-muted-foreground hidden sm:block">Manage your digital inheritance plan</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 lg:gap-3">
+              <Badge className="px-2 lg:px-3 py-1 bg-success/10 border-success/30 text-success text-xs">
+                <div className="status-dot active mr-1 lg:mr-2" />
                 Active
               </Badge>
-              <Button variant="ghost" size="sm" className="font-mono text-xs">
+              <Button variant="ghost" size="sm" className="font-mono text-xs hidden sm:inline-flex">
                 0x742d...4a9B
               </Button>
             </div>
