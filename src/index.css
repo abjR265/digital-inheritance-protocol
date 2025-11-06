@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Matteo / DIP Design System - Cryptio-inspired dark green aesthetic */
+/* DIP Design System - Cryptio-inspired dark green aesthetic */
 
 @layer base {
   :root {
@@ -55,7 +55,7 @@
   }
 
   .dark {
-    /* Matteo Dark - Black + Forest Green */
+    /* DIP Dark Theme - Black + Forest Green */
     --background: 0 0% 4%;
     --foreground: 0 0% 100%;
 

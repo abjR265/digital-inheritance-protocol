@@ -38,7 +38,7 @@ const Dashboard = () => {
         <div className="p-6 border-b border-border/50">
           <Link to="/" className="flex items-center gap-2 group">
             <Shield className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold">Matteo</span>
+            <span className="text-xl font-bold">DIP</span>
           </Link>
         </div>
 

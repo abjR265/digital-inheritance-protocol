@@ -26,7 +26,7 @@ const Index = () => {
               <div className="absolute inset-0 bg-primary/10 blur-lg group-hover:bg-primary/20 transition-all duration-300" />
             </div>
             <span className="text-xl font-bold text-foreground">
-              Matteo
+              DIP
             </span>
           </Link>
           <nav className="hidden md:flex items-center gap-6">
@@ -63,7 +63,7 @@ const Index = () => {
                 
                 <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
                   <span className="text-foreground">
-                    Matteo: Secure
+                    Secure
                   </span>
                   <br />
                   <span className="text-primary">
@@ -247,11 +247,11 @@ const Index = () => {
             <div className="flex items-center gap-2">
               <Shield className="h-6 w-6 text-primary" />
               <span className="font-semibold text-foreground">
-                Matteo - Digital Inheritance Protocol
+                Digital Inheritance Protocol
               </span>
             </div>
             <p className="text-sm text-muted-foreground">
-              © 2024 Matteo. Built with trust and transparency.
+              © 2024 DIP. Built with trust and transparency.
             </p>
           </div>
         </div>
