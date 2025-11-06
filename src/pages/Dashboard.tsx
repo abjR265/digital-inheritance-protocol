@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Shield, Wallet, Users, Clock, Plus, PlayCircle, CheckCircle2 } from "lucide-react";
+import { Shield, Wallet, Users, Clock, Plus, PlayCircle, CheckCircle2, TrendingUp, Activity, Zap, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -7,11 +7,10 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
-  const [protectionScore] = useState(66); // Mock: (1 wallet + 1 rule + 1 beneficiary) / 3 * 100
+  const [protectionScore] = useState(66);
 
-  // Mock data
   const wallets = [
-    { id: 1, address: "0x742d...4a9B", chain: "Ethereum", testnet: true, connected: true },
+    { id: 1, address: "0x742d...4a9B", chain: "Ethereum", testnet: true, connected: true, balance: "2.45 ETH" },
   ];
 
   const rules = [
@@ -22,225 +21,289 @@ const Dashboard = () => {
     { id: 1, name: "Alice Doe", email: "alice@example.com", kyc: "pending", percentage: 100 },
   ];
 
-  const nextCheckIn = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000); // 90 days from now
+  const nextCheckIn = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/10 to-background">
+    <div className="min-h-screen overflow-hidden relative">
+      {/* Animated background */}
+      <div className="fixed inset-0 mesh-gradient opacity-30 pointer-events-none" />
+      <div className="fixed inset-0 bg-background/90 pointer-events-none" />
+      
+      {/* Floating orbs */}
+      <div className="fixed top-10 right-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float pointer-events-none" />
+      <div className="fixed bottom-20 left-10 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-float [animation-delay:3s] pointer-events-none" />
+
       {/* Header */}
-      <header className="border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
+      <header className="border-b border-border/30 backdrop-blur-xl bg-background/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <Shield className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold">DIP Dashboard</span>
+          <Link to="/" className="flex items-center gap-2 group">
+            <div className="relative">
+              <Shield className="h-8 w-8 text-primary animate-glow" />
+              <div className="absolute inset-0 bg-primary/20 blur-xl group-hover:bg-primary/40 transition-all duration-300" />
+            </div>
+            <span className="text-xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient">
+              DIP Dashboard
+            </span>
           </Link>
-          <Button variant="ghost" size="sm">
-            0x742d...4a9B
-          </Button>
+          <div className="flex items-center gap-3">
+            <Badge className="px-3 py-1 bg-success/10 border-success/30 text-success">
+              <Activity className="h-3 w-3 mr-1 animate-pulse" />
+              Online
+            </Badge>
+            <Button variant="ghost" size="sm" className="font-mono hover-glow">
+              0x742d...4a9B
+            </Button>
+          </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8">
-        {/* Protection Score Card */}
-        <Card className="p-8 mb-8 glass-card">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-3">
-                <Shield className="h-8 w-8 text-primary" />
-                <h2 className="text-3xl font-bold">Your Legacy is {protectionScore}% Protected</h2>
+      <div className="container mx-auto px-4 py-8 relative z-10">
+        {/* Protection Score - Hero Card */}
+        <Card className="p-8 md:p-12 mb-8 glass-card border-2 border-primary/20 relative overflow-hidden group">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="relative z-10">
+            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
+              <div className="flex-1">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="relative">
+                    <Shield className="h-12 w-12 text-primary animate-glow" />
+                    <div className="absolute inset-0 bg-primary/20 blur-xl animate-pulse-slow" />
+                  </div>
+                  <div>
+                    <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient">
+                      {protectionScore}% Protected
+                    </h2>
+                    <p className="text-muted-foreground mt-1">Your legacy protection score</p>
+                  </div>
+                </div>
+                <Progress value={protectionScore} className="h-4 mb-4" />
+                <p className="text-muted-foreground">
+                  Complete the remaining steps to reach 100% protection
+                </p>
               </div>
-              <p className="text-muted-foreground mb-4">
-                Complete the setup to reach 100% protection
-              </p>
-              <Progress value={protectionScore} className="h-3" />
+              <Button variant="hero" size="lg" className="group animate-glow">
+                <CheckCircle2 className="mr-2 h-5 w-5 group-hover:animate-spin" />
+                Complete Setup
+              </Button>
             </div>
-            <Button variant="hero" className="group">
-              Complete Setup
-              <CheckCircle2 className="ml-2 h-5 w-5" />
+          </div>
+        </Card>
+
+        {/* Quick Stats */}
+        <div className="grid md:grid-cols-4 gap-4 mb-8">
+          {[
+            { label: "Total Value", value: "$12,450", icon: TrendingUp, trend: "+12.5%", color: "success" },
+            { label: "Wallets", value: "1", icon: Wallet, trend: "Active", color: "primary" },
+            { label: "Beneficiaries", value: "1", icon: Users, trend: "Verified", color: "accent" },
+            { label: "Next Check", value: "90d", icon: Clock, trend: "Scheduled", color: "info" },
+          ].map((stat, i) => (
+            <Card key={i} className="p-6 glass-card hover-lift cursor-pointer group">
+              <div className="flex items-center justify-between mb-3">
+                <stat.icon className="h-5 w-5 text-primary group-hover:animate-bounce-slow" />
+                <Badge variant="outline" className="text-xs">{stat.trend}</Badge>
+              </div>
+              <div className="text-3xl font-bold mb-1 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                {stat.value}
+              </div>
+              <div className="text-sm text-muted-foreground">{stat.label}</div>
+            </Card>
+          ))}
+        </div>
+
+        {/* Alert Banner */}
+        <Card className="p-6 mb-8 bg-gradient-to-r from-info/10 via-accent/10 to-info/10 border-info/30 animate-gradient hover-glow">
+          <div className="flex items-center justify-between gap-4 flex-wrap">
+            <div className="flex items-center gap-4">
+              <div className="h-12 w-12 rounded-xl bg-info/20 flex items-center justify-center animate-pulse-slow">
+                <Clock className="h-6 w-6 text-info" />
+              </div>
+              <div>
+                <p className="font-semibold text-lg">Next activity check in 90 days</p>
+                <p className="text-sm text-muted-foreground">
+                  Due {nextCheckIn.toLocaleDateString()} • {nextCheckIn.toLocaleTimeString()}
+                </p>
+              </div>
+            </div>
+            <Button variant="outline" className="hover-glow">
+              <CheckCircle2 className="mr-2 h-4 w-4" />
+              Confirm I'm Alive
             </Button>
           </div>
         </Card>
 
-        {/* Next Check-in Banner */}
-        <div className="mb-8 p-6 rounded-xl bg-gradient-to-r from-info/10 to-accent/10 border border-border/50">
-          <div className="flex items-center gap-4">
-            <Clock className="h-6 w-6 text-info" />
-            <div className="flex-1">
-              <p className="font-semibold">Next activity check</p>
-              <p className="text-sm text-muted-foreground">
-                Due {nextCheckIn.toLocaleDateString()} at {nextCheckIn.toLocaleTimeString()}
-              </p>
-            </div>
-            <Button variant="outline">Confirm I'm Alive</Button>
-          </div>
-        </div>
-
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Wallets */}
-          <Card className="p-6">
+          <Card className="p-6 glass-card hover-lift">
             <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-2">
-                <Wallet className="h-5 w-5 text-primary" />
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                  <Wallet className="h-5 w-5 text-primary-foreground" />
+                </div>
                 <h3 className="text-xl font-semibold">Connected Wallets</h3>
               </div>
-              <Button size="sm" variant="outline">
-                <Plus className="h-4 w-4 mr-1" />
+              <Button size="sm" variant="outline" className="hover-glow group">
+                <Plus className="h-4 w-4 mr-1 group-hover:rotate-90 transition-transform duration-300" />
                 Add
               </Button>
             </div>
 
             <div className="space-y-4">
-              {wallets.length === 0 ? (
-                <div className="text-center py-12 text-muted-foreground">
-                  <Wallet className="h-12 w-12 mx-auto mb-3 opacity-50" />
-                  <p>No wallets connected yet</p>
-                  <p className="text-sm">Connect to start protecting assets</p>
-                </div>
-              ) : (
-                wallets.map((wallet) => (
-                  <div
-                    key={wallet.id}
-                    className="p-4 rounded-lg border border-border bg-card hover:bg-card-glass transition-colors"
-                  >
-                    <div className="flex items-center justify-between">
+              {wallets.map((wallet) => (
+                <div
+                  key={wallet.id}
+                  className="p-5 rounded-xl border border-border bg-card/50 hover:bg-card transition-all duration-300 hover-lift cursor-pointer group"
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center animate-glow">
+                        <Globe className="h-5 w-5 text-primary-foreground" />
+                      </div>
                       <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <code className="font-mono font-semibold">{wallet.address}</code>
+                        <code className="font-mono font-semibold text-lg">{wallet.address}</code>
+                        <div className="flex items-center gap-2 mt-1">
+                          <p className="text-sm text-muted-foreground">{wallet.chain}</p>
                           {wallet.testnet && (
                             <Badge variant="outline" className="text-xs">Testnet</Badge>
                           )}
                         </div>
-                        <p className="text-sm text-muted-foreground">{wallet.chain}</p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        {wallet.connected && (
-                          <div className="h-2 w-2 rounded-full bg-success animate-pulse" />
-                        )}
                       </div>
                     </div>
+                    {wallet.connected && (
+                      <div className="flex items-center gap-2">
+                        <div className="h-2 w-2 rounded-full bg-success animate-pulse" />
+                        <span className="text-xs text-success">Connected</span>
+                      </div>
+                    )}
                   </div>
-                ))
-              )}
+                  <div className="flex items-center justify-between pt-3 border-t border-border/50">
+                    <span className="text-sm text-muted-foreground">Balance</span>
+                    <span className="font-semibold text-lg">{wallet.balance}</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </Card>
 
           {/* Rules */}
-          <Card className="p-6">
+          <Card className="p-6 glass-card hover-lift">
             <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-2">
-                <Clock className="h-5 w-5 text-accent" />
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-accent to-primary flex items-center justify-center">
+                  <Clock className="h-5 w-5 text-primary-foreground" />
+                </div>
                 <h3 className="text-xl font-semibold">Transfer Rules</h3>
               </div>
-              <Button size="sm" variant="outline">
-                <Plus className="h-4 w-4 mr-1" />
+              <Button size="sm" variant="outline" className="hover-glow group">
+                <Plus className="h-4 w-4 mr-1 group-hover:rotate-90 transition-transform duration-300" />
                 Add
               </Button>
             </div>
 
             <div className="space-y-4">
-              {rules.length === 0 ? (
-                <div className="text-center py-12 text-muted-foreground">
-                  <Clock className="h-12 w-12 mx-auto mb-3 opacity-50" />
-                  <p>No rules defined yet</p>
-                  <p className="text-sm">Add your first rule to define when transfers happen</p>
-                </div>
-              ) : (
-                rules.map((rule) => (
-                  <div
-                    key={rule.id}
-                    className="p-4 rounded-lg border border-border bg-card hover:bg-card-glass transition-colors"
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <Badge variant={rule.status === "active" ? "default" : "secondary"}>
-                        {rule.status}
-                      </Badge>
-                      <span className="text-xs text-muted-foreground">
-                        Last check: {new Date(rule.lastCheck).toLocaleDateString()}
-                      </span>
-                    </div>
-                    <p className="font-semibold capitalize mb-1">{rule.type} Trigger</p>
-                    <p className="text-sm text-muted-foreground">
-                      Transfer if inactive for {rule.duration}
-                    </p>
+              {rules.map((rule) => (
+                <div
+                  key={rule.id}
+                  className="p-5 rounded-xl border border-border bg-card/50 hover:bg-card transition-all duration-300 hover-lift cursor-pointer"
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <Badge 
+                      variant={rule.status === "active" ? "default" : "secondary"}
+                      className="animate-pulse-slow"
+                    >
+                      <Activity className="h-3 w-3 mr-1" />
+                      {rule.status}
+                    </Badge>
+                    <span className="text-xs text-muted-foreground">
+                      Last check: {new Date(rule.lastCheck).toLocaleDateString()}
+                    </span>
                   </div>
-                ))
-              )}
+                  <div className="flex items-center gap-3 mb-2">
+                    <Zap className="h-5 w-5 text-accent" />
+                    <p className="font-semibold text-lg capitalize">{rule.type} Trigger</p>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Transfer if inactive for <span className="text-foreground font-semibold">{rule.duration}</span>
+                  </p>
+                </div>
+              ))}
             </div>
           </Card>
 
           {/* Beneficiaries */}
-          <Card className="p-6 lg:col-span-2">
+          <Card className="p-6 lg:col-span-2 glass-card hover-lift">
             <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-2">
-                <Users className="h-5 w-5 text-success" />
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-success to-primary flex items-center justify-center">
+                  <Users className="h-5 w-5 text-primary-foreground" />
+                </div>
                 <h3 className="text-xl font-semibold">Beneficiaries</h3>
               </div>
-              <Button size="sm" variant="outline">
-                <Plus className="h-4 w-4 mr-1" />
+              <Button size="sm" variant="outline" className="hover-glow group">
+                <Plus className="h-4 w-4 mr-1 group-hover:rotate-90 transition-transform duration-300" />
                 Add Beneficiary
               </Button>
             </div>
 
             <div className="space-y-4">
-              {beneficiaries.length === 0 ? (
-                <div className="text-center py-12 text-muted-foreground">
-                  <Users className="h-12 w-12 mx-auto mb-3 opacity-50" />
-                  <p>No beneficiaries added yet</p>
-                  <p className="text-sm">Add someone you trust. You can change this anytime.</p>
-                </div>
-              ) : (
-                beneficiaries.map((ben) => (
-                  <div
-                    key={ben.id}
-                    className="p-4 rounded-lg border border-border bg-card hover:bg-card-glass transition-colors"
-                  >
-                    <div className="flex flex-col md:flex-row justify-between gap-4">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-primary-foreground font-semibold">
-                            {ben.name.charAt(0)}
-                          </div>
-                          <div>
-                            <p className="font-semibold">{ben.name}</p>
-                            <p className="text-sm text-muted-foreground">{ben.email}</p>
-                          </div>
-                        </div>
+              {beneficiaries.map((ben) => (
+                <div
+                  key={ben.id}
+                  className="p-6 rounded-xl border border-border bg-card/50 hover:bg-card transition-all duration-300 hover-lift cursor-pointer group"
+                >
+                  <div className="flex flex-col md:flex-row justify-between gap-6">
+                    <div className="flex items-center gap-4 flex-1">
+                      <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-primary via-accent to-primary animate-gradient flex items-center justify-center text-primary-foreground font-bold text-2xl shadow-lg group-hover:shadow-glow transition-all duration-300">
+                        {ben.name.charAt(0)}
                       </div>
-                      <div className="flex items-center gap-4">
-                        <div className="text-right">
-                          <p className="text-sm text-muted-foreground">Allocation</p>
-                          <p className="font-semibold">{ben.percentage}%</p>
-                        </div>
-                        <Badge
-                          variant={ben.kyc === "verified" ? "default" : "secondary"}
-                          className="capitalize"
-                        >
-                          {ben.kyc}
-                        </Badge>
+                      <div>
+                        <p className="font-semibold text-lg">{ben.name}</p>
+                        <p className="text-sm text-muted-foreground">{ben.email}</p>
                       </div>
                     </div>
+                    <div className="flex items-center gap-6">
+                      <div className="text-right">
+                        <p className="text-sm text-muted-foreground mb-1">Allocation</p>
+                        <p className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                          {ben.percentage}%
+                        </p>
+                      </div>
+                      <Badge
+                        variant={ben.kyc === "verified" ? "default" : "secondary"}
+                        className="capitalize px-3 py-1"
+                      >
+                        {ben.kyc === "pending" && <Clock className="h-3 w-3 mr-1 animate-spin" />}
+                        {ben.kyc}
+                      </Badge>
+                    </div>
                   </div>
-                ))
-              )}
+                </div>
+              ))}
             </div>
           </Card>
         </div>
 
         {/* Test Mode */}
-        <Card className="p-8 mt-8 glass-card border-2 border-primary/20">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-3">
-                <PlayCircle className="h-6 w-6 text-primary" />
-                <h3 className="text-2xl font-semibold">Test Mode</h3>
+        <Card className="p-10 mt-8 glass-card border-2 border-primary/30 hover:border-accent/50 transition-all duration-500 relative overflow-hidden group">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-gradient" />
+          <div className="relative z-10">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center animate-glow">
+                    <PlayCircle className="h-6 w-6 text-primary-foreground" />
+                  </div>
+                  <h3 className="text-3xl font-semibold">Test Mode</h3>
+                </div>
+                <p className="text-muted-foreground text-lg leading-relaxed">
+                  Run a complete simulation to verify your inheritance flow end-to-end on testnet.
+                  <span className="text-foreground font-semibold"> No real assets will be transferred.</span>
+                </p>
               </div>
-              <p className="text-muted-foreground">
-                Run a simulation to verify your inheritance flow end-to-end on testnet.
-                No real assets will be transferred.
-              </p>
+              <Button variant="hero" size="lg" className="group text-lg px-10 py-6 h-auto animate-glow">
+                <PlayCircle className="mr-3 h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
+                Run Test Transfer
+              </Button>
             </div>
-            <Button variant="hero" size="lg">
-              Run Test Transfer
-            </Button>
           </div>
         </Card>
       </div>
