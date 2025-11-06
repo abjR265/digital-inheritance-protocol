@@ -88,10 +88,10 @@ export const TestTransferModal = ({ open, onOpenChange }: TestTransferModalProps
 
         <div className="space-y-6 py-4">
           {/* Current Stage */}
-          <Card className="p-6 bg-background/50 border-primary/20">
+          <Card className="p-6 bg-card/50 border-primary/20">
             <div className="flex items-center gap-3 mb-3">
               <StageIcon className={`h-6 w-6 text-primary ${stage !== "complete" ? "animate-pulse-slow" : ""}`} />
-              <h3 className="font-semibold text-lg">{currentStage.title}</h3>
+              <h3 className="font-semibold text-lg text-foreground">{currentStage.title}</h3>
             </div>
             <p className="text-muted-foreground mb-4">{currentStage.description}</p>
             <Progress value={progress} className="h-3" />
@@ -103,24 +103,24 @@ export const TestTransferModal = ({ open, onOpenChange }: TestTransferModalProps
               <h4 className="font-semibold text-sm text-muted-foreground">Transfer Details</h4>
               
               <div className="space-y-3">
-                <div className="flex justify-between items-center p-3 rounded-lg bg-background/50 border border-primary/10">
+                <div className="flex justify-between items-center p-3 rounded-lg bg-card/50 border border-primary/10">
                   <span className="text-sm text-muted-foreground">Network</span>
-                  <Badge variant="outline">Polygon Testnet</Badge>
+                  <Badge variant="outline" className="border-primary/30">Polygon Testnet</Badge>
                 </div>
 
-                <div className="flex justify-between items-center p-3 rounded-lg bg-background/50 border border-primary/10">
+                <div className="flex justify-between items-center p-3 rounded-lg bg-card/50 border border-primary/10">
                   <span className="text-sm text-muted-foreground">Trigger Type</span>
-                  <Badge>Inactivity (6 months)</Badge>
+                  <Badge className="bg-success/20 border-success/30 text-success hover:bg-success/30">Inactivity (6 months)</Badge>
                 </div>
 
-                <div className="flex justify-between items-center p-3 rounded-lg bg-background/50 border border-primary/10">
+                <div className="flex justify-between items-center p-3 rounded-lg bg-card/50 border border-primary/10">
                   <span className="text-sm text-muted-foreground">Beneficiaries</span>
-                  <span className="font-semibold">1</span>
+                  <span className="font-semibold text-foreground">1</span>
                 </div>
 
-                <div className="flex justify-between items-center p-3 rounded-lg bg-background/50 border border-primary/10">
+                <div className="flex justify-between items-center p-3 rounded-lg bg-card/50 border border-primary/10">
                   <span className="text-sm text-muted-foreground">Assets Transferred</span>
-                  <span className="font-semibold">2.45 ETH</span>
+                  <span className="font-semibold text-foreground">2.45 ETH</span>
                 </div>
               </div>
             </div>
@@ -128,7 +128,7 @@ export const TestTransferModal = ({ open, onOpenChange }: TestTransferModalProps
 
           {/* Transaction Hash (shown when complete) */}
           {stage === "complete" && (
-            <Card className="p-4 bg-success/10 border-success/30 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
+            <Card className="p-4 bg-card/50 border-success/30 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="h-5 w-5 text-success flex-shrink-0 mt-0.5" />
                 <div className="flex-1 min-w-0">
@@ -136,13 +136,13 @@ export const TestTransferModal = ({ open, onOpenChange }: TestTransferModalProps
                   <p className="text-xs text-muted-foreground mb-2">Your test transfer has been successfully executed on testnet</p>
                   <div className="flex items-center gap-2 text-xs">
                     <span className="text-muted-foreground">Tx Hash:</span>
-                    <code className="font-mono text-xs bg-background px-2 py-1 rounded truncate flex-1">
+                    <code className="font-mono text-xs bg-card/80 border border-primary/10 px-2 py-1 rounded truncate flex-1 text-foreground">
                       {txHash.slice(0, 20)}...{txHash.slice(-8)}
                     </code>
                     <Button
                       size="sm"
                       variant="ghost"
-                      className="h-6 w-6 p-0"
+                      className="h-6 w-6 p-0 hover:bg-primary/10"
                       onClick={() => window.open(`https://mumbai.polygonscan.com/tx/${txHash}`, '_blank')}
                     >
                       <ExternalLink className="h-3 w-3" />
@@ -157,16 +157,16 @@ export const TestTransferModal = ({ open, onOpenChange }: TestTransferModalProps
           <div className="flex gap-3 pt-4">
             {stage === "complete" ? (
               <>
-                <Button variant="outline" className="flex-1 hover-glow">
+                <Button variant="outline" className="flex-1 hover-glow border-primary/30">
                   <Download className="mr-2 h-4 w-4" />
                   Download Receipt
                 </Button>
-                <Button variant="default" className="flex-1" onClick={() => onOpenChange(false)}>
+                <Button className="flex-1 bg-success hover:bg-success/90 text-white" onClick={() => onOpenChange(false)}>
                   Close
                 </Button>
               </>
             ) : (
-              <Button variant="outline" className="w-full" onClick={() => onOpenChange(false)}>
+              <Button variant="outline" className="w-full border-primary/30" onClick={() => onOpenChange(false)}>
                 Cancel Simulation
               </Button>
             )}
