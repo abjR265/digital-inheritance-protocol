@@ -76,9 +76,9 @@ export const TestTransferModal = ({ open, onOpenChange }: TestTransferModalProps
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-2xl bg-card border-primary/20">
+      <DialogContent className="sm:max-w-2xl !bg-[#0A0A0A] border-primary/20 text-foreground">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-3 text-2xl">
+          <DialogTitle className="flex items-center gap-3 text-2xl text-foreground">
             <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
               <StageIcon className="h-5 w-5 text-primary-foreground" />
             </div>
@@ -88,7 +88,7 @@ export const TestTransferModal = ({ open, onOpenChange }: TestTransferModalProps
 
         <div className="space-y-6 py-4">
           {/* Current Stage */}
-          <Card className="p-6 bg-background border-primary/20">
+          <Card className="p-6 !bg-[#0D0D0D] border-primary/20">
             <div className="flex items-center gap-3 mb-3">
               <StageIcon className={`h-6 w-6 text-primary ${stage !== "complete" ? "animate-pulse-slow" : ""}`} />
               <h3 className="font-semibold text-lg text-foreground">{currentStage.title}</h3>
@@ -103,22 +103,22 @@ export const TestTransferModal = ({ open, onOpenChange }: TestTransferModalProps
               <h4 className="font-semibold text-sm text-muted-foreground">Transfer Details</h4>
               
               <div className="space-y-3">
-                <div className="flex justify-between items-center p-3 rounded-lg bg-background border border-primary/10">
+                <div className="flex justify-between items-center p-3 rounded-lg !bg-[#0D0D0D] border border-primary/10">
                   <span className="text-sm text-muted-foreground">Network</span>
-                  <Badge variant="outline" className="border-primary/30">Polygon Testnet</Badge>
+                  <Badge variant="outline" className="border-primary/30 text-foreground">Polygon Testnet</Badge>
                 </div>
 
-                <div className="flex justify-between items-center p-3 rounded-lg bg-background border border-primary/10">
+                <div className="flex justify-between items-center p-3 rounded-lg !bg-[#0D0D0D] border border-primary/10">
                   <span className="text-sm text-muted-foreground">Trigger Type</span>
                   <Badge className="bg-success/20 border-success/30 text-success hover:bg-success/30">Inactivity (6 months)</Badge>
                 </div>
 
-                <div className="flex justify-between items-center p-3 rounded-lg bg-background border border-primary/10">
+                <div className="flex justify-between items-center p-3 rounded-lg !bg-[#0D0D0D] border border-primary/10">
                   <span className="text-sm text-muted-foreground">Beneficiaries</span>
                   <span className="font-semibold text-foreground">1</span>
                 </div>
 
-                <div className="flex justify-between items-center p-3 rounded-lg bg-background border border-primary/10">
+                <div className="flex justify-between items-center p-3 rounded-lg !bg-[#0D0D0D] border border-primary/10">
                   <span className="text-sm text-muted-foreground">Assets Transferred</span>
                   <span className="font-semibold text-foreground">2.45 ETH</span>
                 </div>
@@ -128,7 +128,7 @@ export const TestTransferModal = ({ open, onOpenChange }: TestTransferModalProps
 
           {/* Transaction Hash (shown when complete) */}
           {stage === "complete" && (
-            <Card className="p-4 bg-background border-success/30 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
+            <Card className="p-4 !bg-[#0D0D0D] border-success/30 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="h-5 w-5 text-success flex-shrink-0 mt-0.5" />
                 <div className="flex-1 min-w-0">
@@ -136,7 +136,7 @@ export const TestTransferModal = ({ open, onOpenChange }: TestTransferModalProps
                   <p className="text-xs text-muted-foreground mb-2">Your test transfer has been successfully executed on testnet</p>
                   <div className="flex items-center gap-2 text-xs">
                     <span className="text-muted-foreground">Tx Hash:</span>
-                    <code className="font-mono text-xs bg-card/80 border border-primary/10 px-2 py-1 rounded truncate flex-1 text-foreground">
+                    <code className="font-mono text-xs !bg-[#000000] border border-primary/10 px-2 py-1 rounded truncate flex-1 text-foreground">
                       {txHash.slice(0, 20)}...{txHash.slice(-8)}
                     </code>
                     <Button
